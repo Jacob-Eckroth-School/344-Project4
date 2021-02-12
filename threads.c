@@ -11,7 +11,11 @@ pthread_t separatorThread;
 pthread_t plusThread;
 pthread_t outputThread;
 
-
+/*
+** Description: Initializes and starts all threads
+** Prerequisites: None
+** Updated/Returned: 4 threads are created to run the program. Returns if thread creation fails
+*/
 void initializeThreads() {
 	int thread1Result = pthread_create(&inputThread, NULL, getInputLoop, NULL);
 	int thread2Result = pthread_create(&separatorThread, NULL, separatorLoop, NULL);
