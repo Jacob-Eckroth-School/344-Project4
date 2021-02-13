@@ -16,19 +16,22 @@
 */
 void* getInputLoop(void* arg) {
 	assert(buffer1);
-	size_t stringSize = 0;
+	size_t stringSize = BUFFER_SIZE;
 	while (true) {
 		
+
+
 		pthread_mutex_lock(&buffer1Mutex);
-		
 		//if line separator thread is still processing buffer1
 		if (buffer1Processing) {
 			pthread_cond_wait(&buffer1DoneProcessing, &buffer1Mutex);
 		}
+
+
 		getline(&buffer1, &stringSize, stdin);
 		
 		//line separator thread will set this back to false when it's done with the content
-		buffer1Processing = true;
+		
 
 
 		if (strcmp(buffer1, "STOP\n") == 0) {
@@ -36,12 +39,13 @@ void* getInputLoop(void* arg) {
 			inputDone = true;
 
 			memset(buffer1, 0, BUFFER_SIZE);	//if it's stop we want to get rid of it so we don't print it at all
+			buffer1Processing = true;
 			pthread_cond_signal(&buffer1DoneFilling);
 			pthread_mutex_unlock(&buffer1Mutex);
 			pthread_exit(NULL);
 		}
 		
-
+		buffer1Processing = true;
 		pthread_cond_signal(&buffer1DoneFilling);
 		pthread_mutex_unlock(&buffer1Mutex);
 

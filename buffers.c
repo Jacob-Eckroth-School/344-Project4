@@ -59,12 +59,15 @@ void zeroBuffers() {
 */
 void freeBuffers() {
 	if (buffer1) {
+		
 		free(buffer1);
 	}
 	if (buffer2) {
+	
 		free(buffer2);
 	}
 	if (buffer3) {
+	
 		free(buffer3);
 	}
 

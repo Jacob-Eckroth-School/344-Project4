@@ -15,7 +15,7 @@ Description: This program runs a shell. There are 3 written in commands. CD, Sta
 #include "input.h"
 #include "threads.h"
 #include <stdlib.h>
-
+#include <pthread.h>
 
 /*
 ** Description: This is the main function.... it runs the program... that's it
@@ -31,6 +31,7 @@ int main(){
 	pthread_join(plusThread, NULL);	//block until plus thread
 	pthread_join(outputThread, NULL);	//block until output thread
 	freeBuffers();
+
 	return 0;
 }
 
