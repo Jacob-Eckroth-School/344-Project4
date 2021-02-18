@@ -2,11 +2,10 @@
 Name: Jacob Eckroth
 Date: 2/22/2021
 Project Name: Assignment 4: Multi-threaded Producer Consumer Pipeline
-Description: This program runs a shell. There are 3 written in commands. CD, Status, and Exit.
-**			All other commands are handled by the exec family of functions. Supports redirecting input/output once.
-**			Supports background execution of commands.
-**			General Syntax: command [arg1 arg2 ...] [< input_file] [> output_file] [&]
-**			Comments can be made on lines starting with '#'
+Description: This program is a multi-threaded process. It takes input from stdin, until it receives a line that is just
+**			"STOP\n". It removes all line separators and replaces them with spaces, replaces all occurences of ++ with '^'
+**			and then outputs lines in 80 character chunks to stdout. If the last line after STOP has less than 80 characters
+**			Then it is not sent to stdout.
 */
 
 
